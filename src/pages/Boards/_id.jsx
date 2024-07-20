@@ -1,22 +1,13 @@
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import AppBar from "../../components/AppBar";
+import BoardBar from "./BoardBar";
 
 function Board() {
   return (
     <Container disableGutters maxWidth={false} sx={{ height: "100vh" }}>
       <AppBar />
-      <Box
-        sx={{
-          width: "100vw",
-          height: (theme) => theme.trelloCustom.boardBarHeight,
-          backgroundColor: "primary.dark",
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        Board Bar
-      </Box>
+      <BoardBar />
       <Box
         sx={{
           backgroundColor: "primary.main",
