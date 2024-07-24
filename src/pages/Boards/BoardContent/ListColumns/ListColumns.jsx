@@ -12,6 +12,7 @@ function ListColumns() {
         <Column />
         <Column />
       </Box>
+      {/* Add new column */}
       <Box
         sx={{
           minWidth: "200px",
