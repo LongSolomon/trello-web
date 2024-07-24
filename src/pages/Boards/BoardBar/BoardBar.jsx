@@ -1,4 +1,5 @@
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import AddToDriveIcon from "@mui/icons-material/AddToDrive";
 import Box from "@mui/material/Box";
 import Chip from "@mui/material/Chip";
 import Avatar from "@mui/material/Avatar";
@@ -8,15 +9,15 @@ import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 
 const CHIP_STYLE = {
-  color: "primary.main",
+  color: "white",
   paddingX: "5px",
   borderRadius: "5px",
-  backgroundColor: "white",
-  "& .MuiSvgIcon-root": {
-    color: "primary.main",
+  backgroundColor: "transparent",
+  ".MuiSvgIcon-root": {
+    color: "white",
   },
   "&:hover": {
-    backgroundColor: "primary.light",
+    backgroundColor: "primary.50",
   },
 };
 
@@ -31,8 +32,11 @@ function BoardBar() {
           alignItems: "center",
           justifyContent: "space-between",
           gap: 2,
-          overflow: "auto",
-          borderTop: "1px solid #00bfa5",
+          overflowX: "auto",
+          borderBottom: "2px solid white",
+          bgcolor: (theme) => {
+            return theme.palette.mode === "dark" ? "#34495e" : "#1976d2";
+          },
           px: 2,
         }}
       >
@@ -45,24 +49,40 @@ function BoardBar() {
             sx={CHIP_STYLE}
           />
           <Chip
-            icon={<DashboardIcon />}
-            label="DashBoard"
+            icon={<AddToDriveIcon />}
+            label="Add to drive"
             clickable
             onclick={() => {}}
             sx={CHIP_STYLE}
           />
         </Box>
         <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-          <Button variant="outlined" startIcon={<AddIcon></AddIcon>}>
+          <Button
+            variant="outlined"
+            startIcon={<AddIcon />}
+            sx={{
+              color: "white",
+              borderColor: "white",
+              "&:hover": { borderColor: "white" },
+            }}
+          >
             Invite
           </Button>
           <AvatarGroup
             max={6}
             total={24}
             sx={{
+              gap: "10px",
               "& .MuiAvatar-root": {
                 height: 34,
                 width: 34,
+                fontSize: 16,
+                color: "primary.main",
+                cursor: "pointer",
+                "&:first-of-type": {
+                  bgcolor: "primary.light",
+                },
+                border: "none",
               },
             }}
           >
