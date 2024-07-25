@@ -13,29 +13,23 @@ import ListItemText from "@mui/material/ListItemText";
 
 import React from "react";
 
-import Tooltip from "@mui/material/Tooltip";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { ContentCopy, ContentPaste } from "@mui/icons-material";
 import AddCardIcon from "@mui/icons-material/AddCard";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import Tooltip from "@mui/material/Tooltip";
 
-import Button from "@mui/material/Button";
 import { DragHandle } from "@mui/icons-material";
+import Button from "@mui/material/Button";
 
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-
-import GroupIcon from "@mui/icons-material/Group";
-import { Comment } from "@mui/icons-material";
-import { Attachment } from "@mui/icons-material";
-import { List } from "@mui/material";
 import ListCards from "./ListCards/ListCards";
+
+import { mapOrder } from "~/utils/sorts";
 
 const COLUMN_HEADER_HEIGHT = "50px";
 const COLUMN_FOOTER_HEIGHT = "56px";
 
-function Column() {
+function Column({ column }) {
+  const orderedCards = mapOrder(column?.cards, column?.cardOrderIds, "_id");
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -71,7 +65,7 @@ function Column() {
         }}
       >
         <Typography variant="h6" sx={{ fontWeight: "bold", cursor: "pointer" }}>
-          Column Title
+          {column?.title}
         </Typography>
         <Box>
           <Tooltip title="More options">
@@ -136,7 +130,7 @@ function Column() {
       </Box>
 
       {/* List Card */}
-      <ListCards />
+      <ListCards cards={orderedCards} />
 
       {/* Column Footer */}
       <Box

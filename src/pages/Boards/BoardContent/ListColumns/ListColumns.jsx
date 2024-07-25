@@ -3,15 +3,19 @@ import Column from "./Column/Column";
 import Button from "@mui/material/Button";
 import NoteAddIcon from "@mui/icons-material/NoteAdd";
 
-function ListColumns() {
+function ListColumns({ columns }) {
   return (
     <Box sx={{ display: "flex" }}>
       <Box
         sx={{ display: "flex", overflowX: "auto", overflowY: "hidden", gap: 6 }}
       >
-        <Column />
-        <Column />
+        {columns?.map((column) => (
+          <Column key={column._id} column={column} />
+        ))}
+
+        {/* <Column /> */}
       </Box>
+
       {/* Add new column */}
       <Box
         sx={{

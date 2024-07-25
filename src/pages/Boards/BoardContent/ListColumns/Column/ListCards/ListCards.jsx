@@ -5,7 +5,7 @@ import Card from "./Card/Card";
 const COLUMN_HEADER_HEIGHT = "50px";
 const COLUMN_FOOTER_HEIGHT = "56px";
 
-function ListCards() {
+function ListCards({ cards }) {
   return (
     <Box
       sx={{
@@ -26,12 +26,9 @@ function ListCards() {
         // overflow: "unset",
       }}
     >
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+      {cards?.map((card) => {
+        return <Card key={card._id} card={card} />;
+      })}
       <Card />
     </Box>
   );

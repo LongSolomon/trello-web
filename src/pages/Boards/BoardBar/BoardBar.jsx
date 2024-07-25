@@ -7,6 +7,8 @@ import AvatarGroup from "@mui/material/AvatarGroup";
 import Tooltip from "@mui/material/Tooltip";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
+import { Public } from "@mui/icons-material";
+import { capitalizeFirstLetter } from "~/utils/formatters";
 
 const CHIP_STYLE = {
   color: "white",
@@ -21,7 +23,7 @@ const CHIP_STYLE = {
   },
 };
 
-function BoardBar() {
+function BoardBar({ board }) {
   return (
     <>
       <Box
@@ -43,7 +45,14 @@ function BoardBar() {
         <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
           <Chip
             icon={<DashboardIcon />}
-            label="DashBoard"
+            label={board?.title}
+            clickable
+            onclick={() => {}}
+            sx={CHIP_STYLE}
+          />
+          <Chip
+            icon={<Public />}
+            label={capitalizeFirstLetter(board?.type)}
             clickable
             onclick={() => {}}
             sx={CHIP_STYLE}
