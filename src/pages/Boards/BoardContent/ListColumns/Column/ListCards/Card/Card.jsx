@@ -8,7 +8,7 @@ import CardMedia from "@mui/material/CardMedia";
 import { Card as MuiCard } from "@mui/material";
 import { Attachment, Comment } from "@mui/icons-material";
 import GroupIcon from "@mui/icons-material/Group";
-function Card() {
+function Card({ card }) {
   return (
     <MuiCard
       sx={{
@@ -17,24 +17,33 @@ function Card() {
         flexShrink: 0,
       }}
     >
-      <CardMedia
-        sx={{ height: 140 }}
-        image="https://www.australiangeographic.com.au/wp-content/uploads/2021/09/blue-crested-lizard-1.jpg"
-        title="green iguana"
-      />
+      {card?.cover && <CardMedia sx={{ height: 140 }} image={card.cover} />}
+
       <CardContent sx={{ p: 1.5, "&:last-child": { p: 1.5 } }}>
-        <Typography>Lizard</Typography>
+        <Typography variant="body">{card?.title}</Typography>
+        <Typography variant="body2" color="gray">
+          The content of the card
+        </Typography>
       </CardContent>
       <CardActions sx={{ p: "0 4px 8px 4px" }}>
-        <Button size="small" startIcon={<GroupIcon />}>
-          20
-        </Button>
-        <Button size="small" startIcon={<Comment />}>
-          15
-        </Button>
-        <Button size="small" startIcon={<Attachment />}>
-          10
-        </Button>
+        {/* {0 && 6} */}
+        {!!card?.memberIds?.length && (
+          <Button size="small" startIcon={<GroupIcon />}>
+            {card?.memberIds?.length}
+          </Button>
+        )}
+
+        {!!card?.comments?.length && (
+          <Button size="small" startIcon={<Comment />}>
+            {card?.comments?.length}
+          </Button>
+        )}
+
+        {!!card?.attachments?.length && (
+          <Button size="small" startIcon={<Attachment />}>
+            {card?.attachments?.length}
+          </Button>
+        )}
       </CardActions>
     </MuiCard>
   );
